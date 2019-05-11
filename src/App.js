@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 import Header from './component/header/Header'
 import HomePage from './page/home/HomePage'
@@ -12,7 +13,13 @@ render() {
   return (
     <Router>
       <Header></Header>
-      <Route path="/" exact component={HomePage} />
+      <Route path="/" exact component={()=>{
+          if(this.props.user){
+            return <HomePage/>
+          }else{
+            return <Redirect to="login"/>
+          }        
+      }} />
       <Route path="/login" component={LoginPage} />
       <Route path="/signup" component={SignupPage} />
       <div>
@@ -24,4 +31,11 @@ render() {
 
 }
 
-export default App;
+const mapStateToProps = (state)=>{
+  return {
+    user: state.auth.user
+  }
+
+}
+
+export default connect(null, null) (App);
