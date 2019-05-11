@@ -42,7 +42,7 @@ const initialState = {
     isFailed: false,
 }
 
-function signupReducer(state=initialState, action){
+export default function signupReducer(state=initialState, action){
     switch (action.type){
         case SIGNUP_REQUEST:
         return Object.assign({}, state, {

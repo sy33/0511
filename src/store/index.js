@@ -7,8 +7,8 @@ import signupReducer from './signupReducer'
 export function configureStore(){
     return createStore(
         combineReducers({
-            auth: authReducer
-            signup: signupReducer
+            auth: authReducer,
+            signup: signupReducer,
         }),
         applyMiddleware(thunk)
         )
