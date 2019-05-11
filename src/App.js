@@ -38,4 +38,4 @@ const mapStateToProps = (state)=>{
 
 }
 
-export default connect(null, null) (App);
+export default connect(mapStateToProps, null)(App);
